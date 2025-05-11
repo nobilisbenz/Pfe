@@ -1,31 +1,25 @@
 {
-  "name": "nodejs-express-mysql",
+  "name": "api",
   "version": "1.0.0",
-  "description": "Node.js Restful CRUD API with Node.js, Express and MySQL",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "init-db": "node scripts/init-database.js"
+    "start": "cross-env NODE_ENV=production node server.js",
+    "dev": "cross-env NODE_ENV=development nodemon server.js"
   },
-  "keywords": [
-    "nodejs",
-    "express",
-    "mysql",
-    "restapi"
-  ],
-  "author": "bezkoder",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
   "dependencies": {
+    "config": "^3.3.12",
     "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "mysql": "^2.18.1",
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^16.4.1",
-    "express-async-handler": "^1.2.0",
-    "jsonwebtoken": "^9.0.2",
-    "nodemailer": "^6.9.9",
-    "twilio": "^4.20.1"
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1"
   }
 }
-
