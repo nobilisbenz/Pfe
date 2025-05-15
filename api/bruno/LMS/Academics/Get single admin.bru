@@ -1,0 +1,15 @@
+meta {
+  name: Get single admin
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseURL}}/admins/profile
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM3MWE0ZTFjLTMxMjUtMTFmMC05ODM0LWYyOTYxOWJiNjBhYyIsInJvbGUiOiJ1c2VyIiwibmFtZSI6ImNjYyIsImlhdCI6MTc0NzI3MDI1NywiZXhwIjoxNzQ3NzAyMjU3fQ.xEfjZ_sH7ygQDMjNIS0S55GBweLcbguZ7wcxOyeJN50
+}

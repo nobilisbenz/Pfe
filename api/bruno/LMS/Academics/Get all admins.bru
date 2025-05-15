@@ -1,0 +1,15 @@
+meta {
+  name: Get all admins
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseURL}}/admins/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJuYW1lIjoiYWFhIiwiaWF0IjoxNzQ3MjY4NDk0LCJleHAiOjE3NDc3MDA0OTR9.IyRKYF6c44IginEFN-v2x47HxDh6hWIsxcwTtD8l2Z4
+}

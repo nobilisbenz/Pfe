@@ -1,0 +1,18 @@
+meta {
+  name: Update single admin
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseURL}}/admins/22
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": "69282713-3125-11f0-9834-f29619bb60ac",
+    "name": "bilal"
+  }
+}

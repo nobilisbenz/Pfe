@@ -1,0 +1,17 @@
+meta {
+  name: Delete single admin
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{baseURL}}/admins/22
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": "9da7a05f-30e6-11f0-9834-f29619bb60ac"
+  }
+}

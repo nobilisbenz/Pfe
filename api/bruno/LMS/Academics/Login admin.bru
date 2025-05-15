@@ -1,0 +1,18 @@
+meta {
+  name: Login admin
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseURL}}/admins/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "ccc@123.com",
+    "password": "asd123456"
+  }
+}

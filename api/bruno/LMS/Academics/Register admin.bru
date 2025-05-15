@@ -1,0 +1,20 @@
+meta {
+  name: Register admin
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseURL}}/admins/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "ccc",
+    "email": "ccc@123.com",
+    "password": "asd123456",
+    "role": "admin"
+  }
+}
