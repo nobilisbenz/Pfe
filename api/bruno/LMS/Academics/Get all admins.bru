@@ -7,5 +7,9 @@ meta {
 get {
   url: {{baseURL}}/admins/
   body: none
-  auth: inherit
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
 }

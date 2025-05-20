@@ -1,0 +1,15 @@
+meta {
+  name: Admin publish exam result
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseURL}}/exam-results/682b564db0983b813280a5a2/admin-toggle-publish
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

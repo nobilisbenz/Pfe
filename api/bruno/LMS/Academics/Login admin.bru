@@ -6,6 +6,13 @@ meta {
 
 post {
   url: {{baseURL}}/admins/login
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "email": "123c@gmail.com",
+    "password": "12345"
+  }
 }

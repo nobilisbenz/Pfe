@@ -1,0 +1,21 @@
+meta {
+  name: Update Academic-term
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseURL}}/academic-terms/682b65d7fd6ea3a0a89356e6
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}
+
+body:json {
+  {
+   "name": "3rd Term" 
+  }
+}

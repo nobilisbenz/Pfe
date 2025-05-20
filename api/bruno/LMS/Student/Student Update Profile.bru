@@ -1,0 +1,21 @@
+meta {
+  name: Student Update Profile
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{baseURL}}/students/update
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{studentTokken}}
+}
+
+body:json {
+  {
+    "email":"done33@gmail.com"
+  }
+}

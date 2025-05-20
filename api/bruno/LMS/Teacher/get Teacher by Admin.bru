@@ -1,0 +1,15 @@
+meta {
+  name: get Teacher by Admin
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseURL}}/teachers/682b7761fd6ea3a0a89357de/admin
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

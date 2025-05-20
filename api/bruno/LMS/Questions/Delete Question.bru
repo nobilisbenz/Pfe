@@ -1,0 +1,22 @@
+meta {
+  name: Delete Question
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{baseURL}}/questions/682b85d50a7c0befbffb8d79
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{teacherTokken}}
+}
+
+body:json {
+  {
+    "clssLevels": "682b69a6fd6ea3a0a8935702",
+    "program": "682b720afd6ea3a0a89357a7"
+  }
+}

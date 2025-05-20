@@ -1,0 +1,21 @@
+meta {
+  name: Teacher Update Profile
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{baseURL}}/teachers/update
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{teacherTokken}}
+}
+
+body:json {
+  {
+  "name": "slama"
+  }
+}

@@ -1,0 +1,15 @@
+meta {
+  name: get All Academic-terms
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseURL}}/academic-terms
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

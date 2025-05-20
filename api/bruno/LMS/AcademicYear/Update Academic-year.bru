@@ -1,0 +1,21 @@
+meta {
+  name: Update Academic-year
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseURL}}/academic-years/682b6e7afd6ea3a0a8935739
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}
+
+body:json {
+  {
+   "name": "2023-2024 Academic Year cool" 
+  }
+}

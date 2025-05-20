@@ -1,11 +1,15 @@
 meta {
   name: Admin publish exam
   type: http
-  seq: 11
+  seq: 12
 }
 
 put {
   url: {{baseURL}}/admins/publish/exam/22
   body: none
   auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
 }

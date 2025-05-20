@@ -1,11 +1,15 @@
 meta {
   name: Delete single admin
   type: http
-  seq: 6
+  seq: 7
 }
 
 delete {
-  url: {{baseURL}}/admins/22
+  url: {{baseURL}}/admins/67c6bd33688d8b0bab23050e
   body: none
   auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
 }

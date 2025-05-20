@@ -1,0 +1,22 @@
+meta {
+  name: Admin update student
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{baseURL}}/students/682b5a38b0983b813280a5bf/update/admin
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}
+
+body:json {
+  {
+    "clssLevels": "Level 100",
+    "program": "682b720afd6ea3a0a89357a7"
+  }
+}

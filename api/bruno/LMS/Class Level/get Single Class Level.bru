@@ -1,0 +1,15 @@
+meta {
+  name: get Single Class Level
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseURL}}/class-levels/682b69abfd6ea3a0a8935709
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

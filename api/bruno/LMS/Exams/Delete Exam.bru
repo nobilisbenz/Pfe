@@ -1,0 +1,15 @@
+meta {
+  name: Delete Exam
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseURL}}/exams/682b7fcc961fa5ada58592c0
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{teacherTokken}}
+}

@@ -1,0 +1,15 @@
+meta {
+  name: get All Academic-year
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseURL}}/academic-years
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

@@ -1,0 +1,21 @@
+meta {
+  name: Update Question
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{baseURL}}/questions/682b85d50a7c0befbffb8d79
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{teacherTokken}}
+}
+
+body:json {
+  {
+      "optionB": "Hyper Markup language 2" 
+  }
+}

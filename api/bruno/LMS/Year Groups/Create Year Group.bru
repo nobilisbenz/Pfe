@@ -1,0 +1,22 @@
+meta {
+  name: Create Year Group
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseURL}}/year-groups/
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}
+
+body:json {
+  {
+    "name": "2023 year group",
+    "academicYear": "682b6ee3fd6ea3a0a8935750"
+  }
+}

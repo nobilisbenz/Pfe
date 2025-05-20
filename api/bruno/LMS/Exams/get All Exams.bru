@@ -1,0 +1,15 @@
+meta {
+  name: get All Exams
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseURL}}/exams
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{teacherTokken}}
+}

@@ -1,0 +1,22 @@
+meta {
+  name: get All Teachers
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseURL}}/teachers/admin?limit=2&skip=2&page=1&name=Nabi
+  body: none
+  auth: inherit
+}
+
+params:query {
+  limit: 2
+  skip: 2
+  page: 1
+  name: Nabi
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

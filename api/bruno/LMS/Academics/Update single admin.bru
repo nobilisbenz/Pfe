@@ -1,11 +1,21 @@
 meta {
   name: Update single admin
   type: http
-  seq: 5
+  seq: 6
 }
 
 put {
-  url: {{baseURL}}/admins/22
-  body: none
-  auth: inherit
+  url: {{baseURL}}/admins/?
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}
+
+body:json {
+  {
+    "name": "bilal"
+  }
 }

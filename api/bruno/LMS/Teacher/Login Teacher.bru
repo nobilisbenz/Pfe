@@ -1,0 +1,22 @@
+meta {
+  name: Login Teacher
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseURL}}/teachers/login
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}
+
+body:json {
+  {
+    "email": "hello@gmail.com",
+    "password": "12345"
+  }
+}

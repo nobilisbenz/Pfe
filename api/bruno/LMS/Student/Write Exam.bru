@@ -1,0 +1,21 @@
+meta {
+  name: Write Exam
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseURL}}/students/exam/682b845f0a7c0befbffb8d50/write
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{studentTokken}}
+}
+
+body:json {
+  {
+    "answers":["optionC"]
+  }
+}

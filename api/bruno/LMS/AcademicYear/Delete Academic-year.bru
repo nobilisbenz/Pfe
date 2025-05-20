@@ -1,0 +1,15 @@
+meta {
+  name: Delete Academic-year
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseURL}}/academic-years/682b6e7afd6ea3a0a8935739
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

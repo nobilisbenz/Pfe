@@ -1,0 +1,30 @@
+meta {
+  name: Create Exam
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseURL}}/exams
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{teacherTokken}}
+}
+
+body:json {
+  {
+    "name": "1st term CS",
+    "description": "This is computer science program",
+    "academicTerm": "682b651efd6ea3a0a89356db",
+    "academicYear": "682b651efd6ea3a0a89356db",
+    "classLevel": "682b69a6fd6ea3a0a8935702",
+    "duration": "40 min",
+    "examTime": "12pm",
+    "examType": "quiz",
+    "subject": "682b717afd6ea3a0a893578d",
+    "program": "682b720afd6ea3a0a89357a7"
+  }
+}

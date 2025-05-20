@@ -1,0 +1,15 @@
+meta {
+  name: Get Profiles Admins
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseURL}}/admins/profile
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

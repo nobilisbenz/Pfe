@@ -1,0 +1,24 @@
+meta {
+  name: Get Single Question
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseURL}}/questions/682b85d50a7c0befbffb8d79
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{teacherTokken}}
+}
+
+body:json {
+  {
+    "name": "hamada",
+    "email": "done@gmail.com",
+    "password": "123123",
+    "phone": "01233456789"
+  }
+}

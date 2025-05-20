@@ -1,0 +1,22 @@
+meta {
+  name: Create Academic-term
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseURL}}/academic-terms
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}
+
+body:json {
+  {
+    "name": "2st term",
+    "description": "second term"
+  }
+}

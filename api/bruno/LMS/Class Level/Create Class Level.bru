@@ -1,0 +1,22 @@
+meta {
+  name: Create Class Level
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseURL}}/class-levels
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}
+
+body:json {
+  {
+    "name": "Level 300",
+    "description": "level 300 class"
+  }
+}

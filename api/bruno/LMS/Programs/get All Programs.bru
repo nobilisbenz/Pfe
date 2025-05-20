@@ -1,0 +1,15 @@
+meta {
+  name: get All Programs
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseURL}}/programs
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

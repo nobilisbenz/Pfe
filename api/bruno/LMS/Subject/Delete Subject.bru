@@ -1,0 +1,15 @@
+meta {
+  name: Delete Subject
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseURL}}/programs/682b6f1dfd6ea3a0a893575b
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

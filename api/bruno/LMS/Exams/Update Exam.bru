@@ -1,0 +1,21 @@
+meta {
+  name: Update Exam
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseURL}}/exams/682b7fcc961fa5ada58592c0
+  body: json
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{teacherTokken}}
+}
+
+body:json {
+  {
+  "name": "2nd term cool"
+  }
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Admin Get All Questions
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseURL}}/questions
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{teacherTokken}}
+}

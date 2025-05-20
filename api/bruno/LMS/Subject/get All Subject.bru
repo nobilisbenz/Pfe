@@ -1,0 +1,15 @@
+meta {
+  name: get All Subject
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseURL}}/subjects
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

@@ -1,0 +1,18 @@
+meta {
+  name: Login Student
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseURL}}/students/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email":"done@gmail.com", 
+    "password":"123123"
+  }
+}

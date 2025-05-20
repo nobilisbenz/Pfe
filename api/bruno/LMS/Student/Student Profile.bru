@@ -1,0 +1,15 @@
+meta {
+  name: Student Profile
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseURL}}/students/profile
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{studentTokken}}
+}

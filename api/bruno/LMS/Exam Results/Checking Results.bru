@@ -1,0 +1,15 @@
+meta {
+  name: Checking Results
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseURL}}/exam-results/682b845f0a7c0befbffb8d50/checking
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{studentTokken}}
+}

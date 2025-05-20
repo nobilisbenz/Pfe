@@ -1,13 +1,31 @@
-// server.js
-const dotenv = require("dotenv");
+require("dotenv").config();
+const http = require("http");
+const dbConnect = require("./config/dbConnect");
+const app = require("./app/app");
+const PORT = process.env.PORT || 5000;
 
-const NODE_ENV = process.env.NODE_ENV || "development";
-if (NODE_ENV === "development") dotenv.config();
+// Connexion à la base de données
+dbConnect().catch(err => {
+    console.error('Erreur de connexion à la base de données:', err);
+    process.exit(1);
+});
 
-const config = require("config");
-const PORT = config.get("PORT");
+// Configuration du serveur
+const server = http.createServer(app);
 
-const app = require("./src/app");
-app.listen(PORT, () =>
-  console.log(`Server is running in ${NODE_ENV} mode on port: ${PORT}`),
-);
+// Gestion des erreurs non capturées
+process.on('uncaughtException', (err) => {
+    console.error('Erreur non capturée:', err);
+    process.exit(1);
+});
+
+process.on('unhandledRejection', (err) => {
+    console.error('Promesse rejetée non gérée:', err);
+    process.exit(1);
+});
+
+// Démarrage du serveur
+server.listen(PORT, () => {
+    console.log(`Serveur démarré sur le port ${PORT}`);
+    console.log(`Mode: ${process.env.NODE_ENV || 'development'}`);
+});

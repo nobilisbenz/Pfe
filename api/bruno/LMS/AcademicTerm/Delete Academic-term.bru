@@ -1,0 +1,15 @@
+meta {
+  name: Delete Academic-term
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseURL}}/academic-terms/682b65d7fd6ea3a0a89356e6
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}

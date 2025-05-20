@@ -1,0 +1,22 @@
+meta {
+  name: Teacher Profile
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseURL}}/teachers/profile
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{teacherTokken}}
+}
+
+body:json {
+  {
+    "email": "hello@gmail.com",
+    "password": "12345"
+  }
+}

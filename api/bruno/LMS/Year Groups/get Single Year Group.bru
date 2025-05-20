@@ -1,0 +1,15 @@
+meta {
+  name: get Single Year Group
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseURL}}/year-groups/682b7333fd6ea3a0a89357b1
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminTokken}}
+}
