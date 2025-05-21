@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { FiPlus, FiEdit2, FiTrash2 } from 'react-icons/fi';
-import { academicService } from '../../services/academic.service';
-import { useAuth } from '../../hooks/useAuth';
+import { useState, useEffect } from "react";
+import { FiPlus, FiEdit2, FiTrash2 } from "react-icons/fi";
+import { academicService } from "../../services/academic.service";
+import { useAuth } from "../../hooks/useAuth";
 
 const ExamManagement = () => {
   const { user } = useAuth();
   const [exams, setExams] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedExam, setSelectedExam] = useState(null);
   const [subjects, setSubjects] = useState([]);
@@ -16,19 +16,19 @@ const ExamManagement = () => {
   const [academicYears, setAcademicYears] = useState([]);
   const [classLevels, setClassLevels] = useState([]);
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    subject: '',
-    program: '',
+    name: "",
+    description: "",
+    subject: "",
+    program: "",
     passMark: 50,
     totalMark: 100,
-    academicTerm: '',
-    academicYear: '',
-    classLevel: '',
-    examType: 'Quiz',
-    duration: '30 minutes',
-    examDate: '',
-    examTime: ''
+    academicTerm: "",
+    academicYear: "",
+    classLevel: "",
+    examType: "Quiz",
+    duration: "30 minutes",
+    examDate: "",
+    examTime: "",
   });
 
   useEffect(() => {
@@ -39,17 +39,22 @@ const ExamManagement = () => {
   const loadExams = async () => {
     try {
       setLoading(true);
-      setError('');
+      setError("");
       const response = await academicService.getExams();
-      
+
       if (response.status === "success") {
         setExams(response.data);
       } else {
-        throw new Error(response.message || "Erreur lors du chargement des examens");
+        throw new Error(
+          response.message || "Erreur lors du chargement des exames",
+        );
       }
     } catch (error) {
-      console.error("Erreur lors du chargement des examens:", error);
-      setError(error.message || 'Une erreur est survenue lors du chargement des examens');
+      console.error("Erreur lors du chargement des exames:", error);
+      setError(
+        error.message ||
+          "Une erreur est survenue lors du chargement des exames",
+      );
     } finally {
       setLoading(false);
     }
@@ -57,16 +62,23 @@ const ExamManagement = () => {
 
   const loadFormData = async () => {
     try {
-      setError('');
-      const [subjectsRes, programsRes, termsRes, yearsRes, levelsRes] = await Promise.all([
-        academicService.getSubjects(),
-        academicService.getPrograms(),
-        academicService.getAcademicTerms(),
-        academicService.getAcademicYears(),
-        academicService.getClassLevels()
-      ]);
-      
-      if (!subjectsRes.data || !programsRes.data || !termsRes.data || !yearsRes.data || !levelsRes.data) {
+      setError("");
+      const [subjectsRes, programsRes, termsRes, yearsRes, levelsRes] =
+        await Promise.all([
+          academicService.getSubjects(),
+          academicService.getPrograms(),
+          academicService.getAcademicTerms(),
+          academicService.getAcademicYears(),
+          academicService.getClassLevels(),
+        ]);
+
+      if (
+        !subjectsRes.data ||
+        !programsRes.data ||
+        !termsRes.data ||
+        !yearsRes.data ||
+        !levelsRes.data
+      ) {
         throw new Error("Certaines données n'ont pas pu être chargées");
       }
 
@@ -76,8 +88,13 @@ const ExamManagement = () => {
       setAcademicYears(yearsRes.data);
       setClassLevels(levelsRes.data);
     } catch (err) {
-      console.error("Erreur lors du chargement des données du formulaire:", err);
-      setError(err.message || "Erreur lors du chargement des données du formulaire");
+      console.error(
+        "Erreur lors du chargement des données du formulaire:",
+        err,
+      );
+      setError(
+        err.message || "Erreur lors du chargement des données du formulaire",
+      );
     }
   };
 
@@ -91,7 +108,7 @@ const ExamManagement = () => {
         program: formData.program || undefined,
         academicTerm: formData.academicTerm || undefined,
         academicYear: formData.academicYear || undefined,
-        classLevel: formData.classLevel || undefined
+        classLevel: formData.classLevel || undefined,
       };
 
       if (selectedExam) {
@@ -102,12 +119,12 @@ const ExamManagement = () => {
       loadExams();
       handleCloseModal();
     } catch (err) {
-      setError(err.message || 'Une erreur est survenue');
+      setError(err.message || "Une erreur est survenue");
     }
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet examen ?')) {
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer cet examen ?")) {
       try {
         await academicService.deleteExam(id);
         loadExams();
@@ -121,19 +138,19 @@ const ExamManagement = () => {
     setIsModalOpen(false);
     setSelectedExam(null);
     setFormData({
-      name: '',
-      description: '',
-      subject: '',
-      program: '',
+      name: "",
+      description: "",
+      subject: "",
+      program: "",
       passMark: 50,
       totalMark: 100,
-      academicTerm: '',
-      academicYear: '',
-      classLevel: '',
-      examType: 'Quiz',
-      duration: '30 minutes',
-      examDate: '',
-      examTime: ''
+      academicTerm: "",
+      academicYear: "",
+      classLevel: "",
+      examType: "Quiz",
+      duration: "30 minutes",
+      examDate: "",
+      examTime: "",
     });
   };
 
@@ -148,7 +165,7 @@ const ExamManagement = () => {
   return (
     <div className="container mx-auto px-4">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Gestion des Examens</h2>
+        <h2 className="text-2xl font-bold text-gray-800">Gestion des Exames</h2>
         <button
           onClick={() => setIsModalOpen(true)}
           className="flex items-center px-4 py-2 bg-mandarine-500 text-white rounded-md hover:bg-mandarine-600"
@@ -158,11 +175,11 @@ const ExamManagement = () => {
         </button>
       </div>
 
-      {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-          {error}
-        </div>
-      )}
+      {/* {error && ( */}
+      {/*   <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"> */}
+      {/*     {error} */}
+      {/*   </div> */}
+      {/* )} */}
 
       <div className="bg-white shadow overflow-hidden rounded-lg">
         <table className="min-w-full divide-y divide-gray-200">
@@ -189,21 +206,23 @@ const ExamManagement = () => {
             {exams.map((exam) => (
               <tr key={exam._id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">{exam.name}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-500">
-                    {exam.subject ? exam.subject.name : 'Non assigné'}
+                  <div className="text-sm font-medium text-gray-900">
+                    {exam.name}
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-500">
-                    {exam.program ? exam.program.name : 'Non défini'}
+                    {exam.subject ? exam.subject.name : "Non assigné"}
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-500">
-                    {new Date(exam.examDate).toLocaleDateString('fr-FR')}
+                    {exam.program ? exam.program.name : "Non défini"}
+                  </div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm text-gray-500">
+                    {new Date(exam.examDate).toLocaleDateString("fr-FR")}
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -213,17 +232,17 @@ const ExamManagement = () => {
                       setFormData({
                         name: exam.name,
                         description: exam.description,
-                        subject: exam.subject?._id || '',
-                        program: exam.program?._id || '',
+                        subject: exam.subject?._id || "",
+                        program: exam.program?._id || "",
                         passMark: exam.passMark,
                         totalMark: exam.totalMark,
-                        academicTerm: exam.academicTerm?._id || '',
-                        academicYear: exam.academicYear?._id || '',
-                        classLevel: exam.classLevel?._id || '',
-                        examType: exam.examType || 'Quiz',
+                        academicTerm: exam.academicTerm?._id || "",
+                        academicYear: exam.academicYear?._id || "",
+                        classLevel: exam.classLevel?._id || "",
+                        examType: exam.examType || "Quiz",
                         duration: exam.duration,
-                        examDate: exam.examDate.split('T')[0],
-                        examTime: exam.examTime
+                        examDate: exam.examDate.split("T")[0],
+                        examTime: exam.examTime,
                       });
                       setIsModalOpen(true);
                     }}
@@ -249,7 +268,7 @@ const ExamManagement = () => {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl my-8">
             <div className="flex justify-between items-center p-6 border-b">
               <h2 className="text-xl font-semibold text-gray-900">
-                {selectedExam ? 'Modifier l\'examen' : 'Nouvel examen'}
+                {selectedExam ? "Modifier l'examen" : "Nouvel examen"}
               </h2>
               <button
                 onClick={handleCloseModal}
@@ -260,7 +279,11 @@ const ExamManagement = () => {
             </div>
 
             <div className="max-h-[calc(100vh-16rem)] overflow-y-auto">
-              <form id="exam-form" onSubmit={handleSubmit} className="p-6 space-y-4">
+              <form
+                id="exam-form"
+                onSubmit={handleSubmit}
+                className="p-6 space-y-4"
+              >
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Nom de l&apos;examen
@@ -268,7 +291,9 @@ const ExamManagement = () => {
                   <input
                     type="text"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                     required
                   />
@@ -280,7 +305,9 @@ const ExamManagement = () => {
                   </label>
                   <textarea
                     value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                     rows="3"
                     required
@@ -294,7 +321,9 @@ const ExamManagement = () => {
                     </label>
                     <select
                       value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, subject: e.target.value })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                       required
                     >
@@ -312,7 +341,9 @@ const ExamManagement = () => {
                     </label>
                     <select
                       value={formData.program}
-                      onChange={(e) => setFormData({ ...formData, program: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, program: e.target.value })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                       required
                     >
@@ -333,7 +364,12 @@ const ExamManagement = () => {
                     </label>
                     <select
                       value={formData.academicTerm}
-                      onChange={(e) => setFormData({ ...formData, academicTerm: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          academicTerm: e.target.value,
+                        })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                       required
                     >
@@ -351,7 +387,12 @@ const ExamManagement = () => {
                     </label>
                     <select
                       value={formData.academicYear}
-                      onChange={(e) => setFormData({ ...formData, academicYear: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          academicYear: e.target.value,
+                        })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                       required
                     >
@@ -372,7 +413,9 @@ const ExamManagement = () => {
                     </label>
                     <select
                       value={formData.classLevel}
-                      onChange={(e) => setFormData({ ...formData, classLevel: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, classLevel: e.target.value })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                       required
                     >
@@ -390,7 +433,9 @@ const ExamManagement = () => {
                     </label>
                     <select
                       value={formData.examType}
-                      onChange={(e) => setFormData({ ...formData, examType: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, examType: e.target.value })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                       required
                     >
@@ -408,7 +453,9 @@ const ExamManagement = () => {
                   <input
                     type="text"
                     value={formData.duration}
-                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, duration: e.target.value })
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                     placeholder="Ex: 30 minutes"
                     required
@@ -423,7 +470,9 @@ const ExamManagement = () => {
                     <input
                       type="date"
                       value={formData.examDate}
-                      onChange={(e) => setFormData({ ...formData, examDate: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, examDate: e.target.value })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                       required
                     />
@@ -435,7 +484,9 @@ const ExamManagement = () => {
                     <input
                       type="time"
                       value={formData.examTime}
-                      onChange={(e) => setFormData({ ...formData, examTime: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, examTime: e.target.value })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                       required
                     />
@@ -450,7 +501,12 @@ const ExamManagement = () => {
                     <input
                       type="number"
                       value={formData.totalMark}
-                      onChange={(e) => setFormData({ ...formData, totalMark: parseInt(e.target.value) })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          totalMark: parseInt(e.target.value),
+                        })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                       min="0"
                       required
@@ -463,18 +519,21 @@ const ExamManagement = () => {
                     <input
                       type="number"
                       value={formData.passMark}
-                      onChange={(e) => setFormData({ ...formData, passMark: parseInt(e.target.value) })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          passMark: parseInt(e.target.value),
+                        })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-mandarine-500"
                       min="0"
                       required
                     />
                   </div>
                 </div>
-
-                
               </form>
             </div>
-            
+
             <div className="p-6 border-t bg-gray-50">
               <div className="flex justify-end space-x-3">
                 <button
@@ -489,7 +548,7 @@ const ExamManagement = () => {
                   form="exam-form"
                   className="px-4 py-2 bg-mandarine-500 text-white rounded-md hover:bg-mandarine-600"
                 >
-                  {selectedExam ? 'Modifier' : 'Créer'}
+                  {selectedExam ? "Modifier" : "Créer"}
                 </button>
               </div>
             </div>
@@ -501,3 +560,4 @@ const ExamManagement = () => {
 };
 
 export default ExamManagement;
+

@@ -37,46 +37,26 @@ exports.registerAdmCtrl = AysncHandler(async (req, res) => {
 //@access   Private
 exports.loginAdminCtrl = AysncHandler(async (req, res) => {
   const { email, password } = req.body;
-
-  // Vérifier si l'email et le mot de passe sont fournis
-  if (!email || !password) {
-    return res.status(400).json({
-      status: "error",
-      message: "Email et mot de passe requis",
-    });
-  }
-
-  // Rechercher l'admin
+  //find the user
   const admin = await Admin.findOne({ email });
   if (!admin) {
-    return res.status(401).json({
-      status: "error",
-      message: "Identifiants invalides",
-    });
+    return res.json({ message: "Invalid login credentials" });
   }
-
-  // Vérifier le mot de passe
-  const isMatched = await isPassMatched(password, admin.password);
+  //verify the password
+  const isMatched = await isPassMatched(password, admin?.password);
   if (!isMatched) {
-    return res.status(401).json({
-      status: "error",
-      message: "Identifiants invalides",
+    return res.json({ message: "Invalid login credentials" });
+  } else {
+    res.status(200).json({
+      status: "success",
+      message: "Admin logged in successfully",
+      data: generateToken({
+        id: admin._id,
+        role: "admin",
+        name: admin.name,
+      }),
     });
   }
-
-  // Générer le token avec les informations importantes
-  const token = generateToken({
-    id: admin._id,
-    role: "admin",
-    name: admin.name,
-  });
-
-  // Renvoyer la réponse
-  res.status(200).json({
-    status: "success",
-    data: token,
-    message: "Connexion réussie",
-  });
 });
 
 //@desc     Get all admins

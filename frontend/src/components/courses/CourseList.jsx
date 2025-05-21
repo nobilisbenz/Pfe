@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { FiEdit2, FiTrash2, FiPlus, FiBook } from 'react-icons/fi';
-import { useAuth } from '../../contexts/AuthContext';
-import { academicService } from '../../services/academic.service';
+import { useState, useEffect } from "react";
+import { FiEdit2, FiTrash2, FiPlus, FiBook } from "react-icons/fi";
+import { useAuth } from "../../contexts/AuthContext";
+import { academicService } from "../../services/academic.service";
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const { user } = useAuth();
-  const isAdmin = user?.role === 'admin';
+  const isAdmin = user?.role === "admin";
 
   useEffect(() => {
     loadCourses();
@@ -19,30 +19,31 @@ const CourseList = () => {
       const response = await academicService.getCourses();
       if (response.status === "success") {
         // Si l'utilisateur est un enseignant, filtrer uniquement ses cours
-        const filteredCourses = user?.role === 'teacher' 
-          ? response.data.filter(course => course.teacher === user._id)
-          : response.data;
+        const filteredCourses =
+          user?.role === "teacher"
+            ? response.data.filter((course) => course.teacher === user._id)
+            : response.data;
         setCourses(filteredCourses);
       }
       setLoading(false);
     } catch (err) {
-      setError('Erreur lors du chargement des cours');
+      setError("Erreur lors du chargement des cours");
       setLoading(false);
     }
   };
 
   const handleEditCourse = async (id) => {
     // Logique d'édition à implémenter
-    console.log('Édition du cours:', id);
+    console.log("Édition du cours:", id);
   };
 
   const handleDeleteCourse = async (id) => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer ce cours ?')) {
+    if (window.confirm("Êtes-vous sûr de vouloir supprimer ce cours ?")) {
       try {
         await academicService.deleteCourse(id);
         await loadCourses();
       } catch (err) {
-        setError('Erreur lors de la suppression du cours');
+        setError("Erreur lors de la suppression du cours");
       }
     }
   };
@@ -58,14 +59,16 @@ const CourseList = () => {
   return (
     <div className="bg-white rounded-lg shadow-md">
       <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-        <h2 className="text-2xl font-semibold text-gray-800">Liste des cours</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">
+          Liste des Formations
+        </h2>
         {isAdmin && (
           <button
-            onClick={() => window.location.href = '/admin/courses/new'}
+            onClick={() => (window.location.href = "/admin/courses/new")}
             className="flex items-center px-4 py-2 bg-mandarine-500 text-white rounded-lg hover:bg-mandarine-600 transition-colors"
           >
             <FiPlus className="w-5 h-5 mr-2" />
-            Ajouter un cours
+            Ajouter une Formation
           </button>
         )}
       </div>
@@ -111,12 +114,16 @@ const CourseList = () => {
                       <FiBook className="h-5 w-5 text-mandarine-600" />
                     </div>
                     <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900">{course.title}</div>
+                      <div className="text-sm font-medium text-gray-900">
+                        {course.title}
+                      </div>
                     </div>
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  <div className="text-sm text-gray-500">{course.description}</div>
+                  <div className="text-sm text-gray-500">
+                    {course.description}
+                  </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {course.duration}
